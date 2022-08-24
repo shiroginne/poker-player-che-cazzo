@@ -12,6 +12,8 @@ class BetStrategy
   def call
     if game_state.community_cards.count == 0
       check_our_hand
+    elsif contain_pairs?
+      raise_bet
     else
       # ranking = RainMan.new(game_state.all_cards).ranking
       # puts "This is ranking ==> #{ranking}"
