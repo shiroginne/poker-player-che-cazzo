@@ -21,4 +21,8 @@ class Card
 
     other_cards.all? { |c| c.suit == suit }
   end
+
+  def to_h
+    {suit:, rank:}
+  end
 end
