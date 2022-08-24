@@ -6,10 +6,10 @@ class RainMan
   base_uri "http://rainman.leanpoker.org"
 
   def initialize(cards)
-    @options = {cards: cards.map(&:to_h)}
+    @cards = cards
   end
 
   def ranking
-    self.class.get("/rank", @options)
+    JSON.parse self.class.get("/rank?cards=#{@cards.to_json}")
   end
 end
