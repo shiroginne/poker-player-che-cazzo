@@ -33,7 +33,7 @@ class BetStrategy
   end
 
   def raise_bet
-    check + 50
+    check + game_state.minimum_raise
   end
 
   def double_raise_bet
