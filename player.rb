@@ -1,4 +1,5 @@
 require_relative "game_state"
+require_relative "bet_strategy"
 
 class Player
   VERSION = "～(^з^)-☆"
