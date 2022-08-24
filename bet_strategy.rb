@@ -12,11 +12,20 @@ class BetStrategy
   def call
     our_hand = game_state.our_hand
     community = game_state.community_cards
+    
+    if game_state.community_cards.count == 0 {
+      check_our_hand
+    } else {
+      # ranking = RainMan.new(game_state.all_cards).ranking
+      # puts "This is ranking ==> #{ranking}"
+      check
+    }
+  end
 
-    # ranking = RainMan.new(game_state.all_cards).ranking
-    # puts "This is ranking ==> #{ranking}"
+  private
 
-    if game_state.all_cards.map(&:rank).uniq.count == 1 || game_state.all_cards.map(&:suit).uniq.count == 1
+  def check_our_hand
+    if game_state.our_hand.map(&:rank).uniq.count == 1 || game_state.our_hand.map(&:suit).uniq.count == 1
       double_raise_bet
     elsif our_hand.all?(&:high_value?)
       raise_bet
@@ -26,8 +35,6 @@ class BetStrategy
       fold
     end
   end
-
-  private
 
   def fold
     0
