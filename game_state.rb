@@ -39,4 +39,8 @@ class GameState
       Card.new(rank: card["rank"], suit: card["suit"])
     end
   end
+
+  def all_cards
+    our_hand + community_cards
+  end
 end
