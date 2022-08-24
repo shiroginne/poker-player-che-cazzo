@@ -1,5 +1,6 @@
 require_relative "game_state"
 require_relative "rain_man"
+require_relative "our_hand"
 
 class BetStrategy
 
@@ -24,12 +25,12 @@ class BetStrategy
   private
 
   def check_our_hand
-    our_hand = game_state.our_hand
-    if game_state.our_hand.map(&:rank).uniq.count == 1
+    our_hand = OurHand.new(cards: game_state.our_hand)
+    if our_hand.is_a_pair?
       double_raise_bet
-    elsif our_hand.all?(&:high_value?)
+    elsif our_hand.all_high?
       raise_bet
-    elsif our_hand.any?(&:high_value?) || game_state.our_hand.map(&:suit).uniq.count == 1
+    elsif our_hand.one_high? || our_hand.same_suit?
       check
     else
       fold
