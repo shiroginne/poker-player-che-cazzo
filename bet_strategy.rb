@@ -18,7 +18,7 @@ class BetStrategy
       cards_used = response["cards_used"]
       if game_state.our_hand.any? { |c| cards_used.include?(c.to_h) }
         rank = response["rank"]
-        raise_bet(percentage: rank&.to_i)
+        game_state.minimum_raise + rank * 10
       end
     end
   end
