@@ -23,6 +23,6 @@ class Card
   end
 
   def to_h
-    {suit:, rank:}
+    {"suit" => suit, "rank" => rank.to_s}
   end
 end

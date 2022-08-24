@@ -9,7 +9,9 @@ class RainMan
     @cards = cards
   end
 
-  def ranking
+  def call
     JSON.parse self.class.get("/rank?cards=#{@cards.to_json}")
+  rescue JSON::ParserError
+    { "rank" => 0 }
   end
 end
