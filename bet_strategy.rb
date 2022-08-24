@@ -10,7 +10,7 @@ class BetStrategy
 
   def call
     our_hand = game_state.our_hand
-    if our_hand.all?(&:high_value?) || our_hand.first.rank == our_hand.second.rank || our_hand.first.suit == our_hand.second.suit
+    if our_hand.all?(&:high_value?) || our_hand[0].rank == our_hand[1].rank || our_hand[0].suit == our_hand[1].suit
       raise_bet
     elsif our_hand.any?(&:high_value?)
       check
@@ -30,6 +30,6 @@ class BetStrategy
   end
 
   def raise_bet
-    game_state.current_buy_in - game_state.our_bet + 50
+    check + 50
   end
 end
