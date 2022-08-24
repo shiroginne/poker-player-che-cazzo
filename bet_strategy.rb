@@ -37,6 +37,6 @@ class BetStrategy
   end
 
   def double_raise_bet
-    riase_bet * 2
+    raise_bet * 2
   end
 end
