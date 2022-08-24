@@ -10,9 +10,6 @@ class BetStrategy
   end
 
   def call
-    our_hand = game_state.our_hand
-    community = game_state.community_cards
-
     if game_state.community_cards.count == 0
       check_our_hand
     else
@@ -25,6 +22,7 @@ class BetStrategy
   private
 
   def check_our_hand
+    our_hand = game_state.our_hand
     if game_state.our_hand.map(&:rank).uniq.count == 1 || game_state.our_hand.map(&:suit).uniq.count == 1
       double_raise_bet
     elsif our_hand.all?(&:high_value?)
@@ -53,6 +51,7 @@ class BetStrategy
   end
 
   def contain_pairs?
+    our_hand = game_state.our_hand
     first_card = our_hand[0]
     second_card = our_hand[1]
 
