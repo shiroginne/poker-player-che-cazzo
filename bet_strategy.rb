@@ -11,9 +11,9 @@ class BetStrategy
   def call
     our_hand = game_state.our_hand
     community = game_state.community_cards
-    if our_hand.all?(&:high_value?) || game_state.all_cards.map(&:rank).uniq.count == 1 || game_state.all_cards.map(&:suit).uniq.count == 1
+    if game_state.all_cards.map(&:rank).uniq.count == 1 || game_state.all_cards.map(&:suit).uniq.count == 1 || contain_pairs?
       double_raise_bet
-    elsif our_hand.all?(&:high_value?) || community.any?(:high_value?)
+    elsif our_hand.all?(&:high_value?)
       raise_bet
     elsif our_hand.any?(&:high_value?)
       check
@@ -38,5 +38,12 @@ class BetStrategy
 
   def double_raise_bet
     raise_bet * 2
+  end
+
+  def contain_pairs?
+    first_card = our_hand[0]
+    second_card = our_hand[1]
+
+    game_state.community_cards.any? { |c| c.rank == first_card.rank || c.rank == second_card.rank }
   end
 end
