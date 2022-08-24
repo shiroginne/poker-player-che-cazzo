@@ -12,14 +12,14 @@ class BetStrategy
   def call
     our_hand = game_state.our_hand
     community = game_state.community_cards
-    
-    if game_state.community_cards.count == 0 {
+
+    if game_state.community_cards.count == 0
       check_our_hand
-    } else {
+    else
       # ranking = RainMan.new(game_state.all_cards).ranking
       # puts "This is ranking ==> #{ranking}"
       check
-    }
+    end
   end
 
   private
