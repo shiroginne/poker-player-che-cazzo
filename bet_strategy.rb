@@ -1,4 +1,5 @@
 require_relative "game_state"
+require_relative "rain_man"
 
 class BetStrategy
 
@@ -11,6 +12,9 @@ class BetStrategy
   def call
     our_hand = game_state.our_hand
     community = game_state.community_cards
+    ranking = RainMan.new(game_state.all_cards).ranking
+    puts "This is ranking ==> #{ranking}"
+    
     if our_hand.all?(&:high_value?) || game_state.all_cards.map(&:rank).uniq.count == 1 || game_state.all_cards.map(&:suit).uniq.count == 1
       double_raise_bet
     elsif our_hand.all?(&:high_value?) || community.any?(:high_value?)
