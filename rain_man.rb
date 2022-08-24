@@ -10,7 +10,7 @@ class RainMan
   end
 
   def call
-    JSON.parse self.class.get("/rank?cards=#{@cards.to_json}")
+    JSON.parse self.class.get("/rank?cards=#{@cards.map(&:to_h).map(&:to_json)}")
   rescue JSON::ParserError
     { "rank" => 0 }
   end
