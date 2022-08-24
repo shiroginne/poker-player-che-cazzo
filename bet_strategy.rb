@@ -21,8 +21,6 @@ class BetStrategy
         raise_bet(percentage: rank&.to_i)
       end
     end
-  rescue =>
-    fold
   end
 
   private

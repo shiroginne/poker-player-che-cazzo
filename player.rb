@@ -7,7 +7,7 @@ class Player
   def bet_request(game_state)
     @game_state = GameState.new(game_state)
     BetStrategy.new(game_state: @game_state).call
-  rescue Exception => e
+  rescue =>
     0 # we fold
   end
 
