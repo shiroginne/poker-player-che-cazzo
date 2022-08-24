@@ -10,7 +10,7 @@ class BetStrategy
 
   def call
     our_hand = game_state.our_hand
-    if our_hand.all?(&:high_value?) || our_hand[0].rank == our_hand[1].rank || our_hand[0].suit == our_hand[1].suit
+    if our_hand.all?(&:high_value?) || game_state.our_hand.map(&:rank).uniq.count == 1 || our_hand[0].suit == our_hand[1].suit
       raise_bet
     elsif our_hand.any?(&:high_value?)
       check
