@@ -13,8 +13,6 @@ class BetStrategy
   def call
     if game_state.community_cards.count == 0
       check_our_hand
-    elsif contain_pairs?
-      raise_bet
     else
       response = RainMan.new(game_state.all_cards).call
       cards_used = response["cards_used"]
@@ -24,7 +22,7 @@ class BetStrategy
       end
     end
   rescue =>
-    check
+    fold
   end
 
   private
@@ -55,13 +53,5 @@ class BetStrategy
     return check + game_state.minimum_raise if percentage.nil?
 
     check + (game_state.maximum_raise * percentage / 100)
-  end
-
-  def contain_pairs?
-    our_hand = game_state.our_hand
-    first_card = our_hand[0]
-    second_card = our_hand[1]
-
-    game_state.community_cards.any? { |c| c.rank == first_card.rank || c.rank == second_card.rank }
   end
 end
