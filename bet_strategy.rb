@@ -27,14 +27,10 @@ class BetStrategy
   def check_our_hand
     ranking = OurHand.new(cards: game_state.our_hand).ranking
     case ranking
-    when 3
-      double_raise_bet
-    when 2
-      raise_bet
-    when 1
-      check
-    else
+    when 0
       fold
+    else
+      raise_bet(percentage: ranking)
     end
   end
 
@@ -50,12 +46,10 @@ class BetStrategy
     check + game_state.maximum_raise
   end
 
-  def raise_bet
-    check + game_state.minimum_raise
-  end
+  def raise_bet(percentage: nil)
+    return check + game_state.minimum_raise if percentage.nil?
 
-  def double_raise_bet
-    raise_bet * 2
+    check + (game_state.maximum_raise * percentage / 100)
   end
 
   def contain_pairs?

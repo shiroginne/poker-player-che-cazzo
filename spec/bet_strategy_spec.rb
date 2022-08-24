@@ -61,7 +61,7 @@ RSpec.describe BetStrategy do
 
   describe 'call' do
     it "checks" do
-      expect(subject.call).to be 240
+      expect(subject.call).to be 399
     end
   end
 end

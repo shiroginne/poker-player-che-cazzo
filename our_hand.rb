@@ -9,11 +9,11 @@ class OurHand
 
   def ranking
     if is_a_pair?
-      3
+      30
     elsif all_high?
-      2
+      20
     elsif one_high? || same_suit?
-      1
+      10
     else
       0
     end
