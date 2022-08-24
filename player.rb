@@ -5,7 +5,7 @@ class Player
 
   def bet_request(game_state)
     @game_state = GameState.new(game_state)
-    BetStrategy.new(game_state: @game_state)
+    BetStrategy.new(game_state: @game_state).call
   end
 
   def showdown(game_state)
