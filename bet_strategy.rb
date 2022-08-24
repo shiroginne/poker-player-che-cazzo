@@ -45,6 +45,10 @@ class BetStrategy
     game_state.current_buy_in - game_state.our_bet
   end
 
+  def all_in
+    check + game_state.maximum_raise
+  end
+
   def raise_bet
     check + game_state.minimum_raise
   end

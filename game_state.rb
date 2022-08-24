@@ -30,6 +30,10 @@ class GameState
     @minimum_raise ||= data["minimum_raise"]
   end
 
+  def maximum_raise
+    @maximum_raise ||= our_player["stack"]
+  end
+
   def all_players
     @all_players ||= data["players"]
   end
