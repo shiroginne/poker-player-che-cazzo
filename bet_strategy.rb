@@ -9,9 +9,10 @@ class BetStrategy
   end
 
   def call
-    if game_state.our_hand.all?(&:high_value?)
+    our_hand = game_state.our_hand
+    if our_hand.all?(&:high_value?) || our_hand.first.rank == our_hand.second.rank || our_hand.first.suit == our_hand.second.suit
       raise_bet
-    elsif game_state.our_hand.any?(&:high_value?)
+    elsif our_hand.any?(&:high_value?)
       check
     else
       fold

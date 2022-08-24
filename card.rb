@@ -9,4 +9,16 @@ class Card
   def high_value?
     ["J", "Q", "K", "A"].include?(rank)
   end
+
+  def same_rank?(other_cards)
+    return true if other_cards.blank?
+
+    other_cards.all? { |c| c.rank == rank }
+  end
+
+  def same_suit(other_cards)
+    return true if other_cards.blank?
+
+    other_cards.all? { |c| c.suit == suit }
+  end
 end
