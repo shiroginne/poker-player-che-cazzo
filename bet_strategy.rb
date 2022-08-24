@@ -16,9 +16,11 @@ class BetStrategy
     else
       response = RainMan.new(game_state.all_cards).call
       cards_used = response["cards_used"]
-      if game_state.our_hand.any? { |c| cards_used.include?(c.to_h) }
+      if cards_used && game_state.our_hand.any? { |c| cards_used.include?(c.to_h) }
         rank = response["rank"]
         game_state.minimum_raise + rank * 10
+      else
+        check_our_hand
       end
     end
   end
