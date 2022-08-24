@@ -7,6 +7,18 @@ class OurHand
     @second_card = cards[1]
   end
 
+  def ranking
+    if is_a_pair?
+      3
+    elsif all_high?
+      2
+    elsif one_high? || same_suit?
+      1
+    else
+      0
+    end
+  end
+
   def is_a_pair?
     first_card.rank == second_card.rank
   end

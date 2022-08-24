@@ -55,18 +55,6 @@ RSpec.describe BetStrategy do
         }
       ],
       "community_cards" => [
-        {
-          "rank" => "4",
-          "suit" => "spades"
-        },
-        {
-          "rank" => "A",
-          "suit" => "hearts"
-        },
-        {
-          "rank" => "6",
-          "suit" => "clubs"
-        }
       ]
     }
   end

@@ -25,12 +25,13 @@ class BetStrategy
   private
 
   def check_our_hand
-    our_hand = OurHand.new(cards: game_state.our_hand)
-    if our_hand.is_a_pair?
+    ranking = OurHand.new(cards: game_state.our_hand).ranking
+    case ranking
+    when 3
       double_raise_bet
-    elsif our_hand.all_high?
+    when 2
       raise_bet
-    elsif our_hand.one_high? || our_hand.same_suit?
+    when 1
       check
     else
       fold
