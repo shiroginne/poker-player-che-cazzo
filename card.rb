@@ -5,4 +5,8 @@ class Card
     @suit = suit
     @rank = rank
   end
+
+  def high_value?
+    ["J", "Q", "K", "A"].include?(rank)
+  end
 end
