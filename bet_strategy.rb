@@ -10,7 +10,10 @@ class BetStrategy
 
   def call
     our_hand = game_state.our_hand
-    if our_hand.all?(&:high_value?) || game_state.all_cards.map(&:rank).uniq.count == 1 || game_state.all_cards.map(&:suit).uniq.count == 1
+    community = game_state.community_cards
+    if our_hand.all?(&:high_value?) || game_state.our_hand.map(&:rank).uniq.count == 1 || our_hand[0].suit == our_hand[1].suit
+      double_raise_bet
+    elsif our_hand.all?(&:high_value?) || community.any?(:high_value?)
       raise_bet
     elsif our_hand.any?(&:high_value?)
       check
@@ -31,5 +34,9 @@ class BetStrategy
 
   def raise_bet
     check + 50
+  end
+
+  def double_raise_bet
+    raise_bet * 2
   end
 end
