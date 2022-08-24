@@ -18,9 +18,9 @@ class BetStrategy
     else
       response = RainMan.new(game_state.all_cards).call
       cards_used = response["cards_used"]
-      if game_state.our_hand.any? { |c| cards_used.include?(c.to_h)}
+      if game_state.our_hand.any? { |c| cards_used.include?(c.to_h) }
         rank = response["rank"]
-        raise_bet(percentage: rank)
+        raise_bet(percentage: rank&.to_i)
       end
     end
   rescue =>
