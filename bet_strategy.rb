@@ -25,11 +25,11 @@ class BetStrategy
 
   def check_our_hand
     our_hand = game_state.our_hand
-    if game_state.our_hand.map(&:rank).uniq.count == 1 || game_state.our_hand.map(&:suit).uniq.count == 1
+    if game_state.our_hand.map(&:rank).uniq.count == 1
       double_raise_bet
     elsif our_hand.all?(&:high_value?)
       raise_bet
-    elsif our_hand.any?(&:high_value?)
+    elsif our_hand.any?(&:high_value?) || game_state.our_hand.map(&:suit).uniq.count == 1
       check
     else
       fold
