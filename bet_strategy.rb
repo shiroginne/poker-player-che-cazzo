@@ -29,6 +29,6 @@ class BetStrategy
   end
 
   def raise_bet
-    game_state.current_buy_in - game_state.our_bet + 10
+    game_state.current_buy_in - game_state.our_bet + 50
   end
 end
