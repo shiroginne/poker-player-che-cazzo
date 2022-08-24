@@ -1,3 +1,5 @@
+require_relative "game_state"
+
 class Player
   VERSION = "～(^з^)-☆"
 
